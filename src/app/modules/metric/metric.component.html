@@ -1,0 +1,15 @@
+<nz-table #headerTable [nzData]="listOfMetricData" [nzPageSize]="50" [nzScroll]="{ y: '240px' }">
+    <thead>
+        <tr>
+            <th id='1'>Name</th>
+            <th id ='2' nzWidth="100px">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of headerTable.data">
+            <td>{{ data.metricName }}</td>
+            <td>{{ data.value }}</td>
+        </tr>
+    </tbody>
+</nz-table>
+<button (click)="loadMetrics()">Load Metrics</button>
