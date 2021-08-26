@@ -12,6 +12,7 @@ const routes: Routes = [
       { path: 'metric', loadChildren: () => import('./modules/metric/metric.module').then(m => m.MetricModule) }
     ]
   },
+  { path: 'testes', loadChildren: () => import('./modules/testes/testes.module').then(m => m.TestesModule) },
 
 ];
 

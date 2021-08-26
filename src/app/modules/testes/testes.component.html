@@ -1,0 +1,12 @@
+<div class="container">
+    <div *ngIf="showError" class="erro">Erro ao carregar Lista!!</div>
+    <button (click)="showList()">{{ buttonText() }}</button>
+    <div *ngIf="show">
+        <ul>
+            <li *ngFor="let dado of listaDeDados">
+                id: {{ dado.id }} Texto: {{ dado.texto }}
+            </li>
+        </ul>
+    </div>
+
+</div>
