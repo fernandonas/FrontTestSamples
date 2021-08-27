@@ -14,6 +14,8 @@ export class TestesComponent implements OnInit {
   showError: boolean;
   public subscription = new Subscription();
   public listaDeDados: Dados[];
+  public dados: Dados;
+  public texto = "";
 
   constructor(
     private readonly testeService: TestService
@@ -31,6 +33,20 @@ export class TestesComponent implements OnInit {
       },
       error: () => {
         this.showError = true;
+      }
+    }));
+  }
+
+  public adicionarDados(): void {
+    const dados: Dados = {id: 1, texto: this.texto.toString()};
+    this.subscription.add(this.testeService.adicionarDados(dados).subscribe({
+      next: response => {
+        console.log(`${response.texto} adicionado com sucesso!`);
+        this.texto = "";
+        this.buscaListaDeDados();
+      },
+      error: () => {
+        console.log("Erro ao adicionar !");
       }
     }));
   }

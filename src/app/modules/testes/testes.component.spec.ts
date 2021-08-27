@@ -1,7 +1,9 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { Observable, throwError } from 'rxjs';
 import { Dados } from './models/dados.model';
+import { dadosMock } from './models/mocks/_dados.mock';
 import { TestService } from './service/test.service';
 import { TestesComponent } from './testes.component';
 
@@ -23,7 +25,8 @@ describe('TestesComponent', () => {
       declarations: [TestesComponent],
       imports: [
         // Usado para simular http request.
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        FormsModule
       ],
       providers: [
         // Informa as serviços injetados no teste.
@@ -58,6 +61,7 @@ describe('TestesComponent', () => {
         texto: 'Texto'
       }
     ];
+
     //Observable que vai ser retornado pelo metodo retornaListaDeDados.
     const ObservableReturn = new Observable<Dados[]>(observable => {
       observable.next(dataResponse);
@@ -104,6 +108,48 @@ describe('TestesComponent', () => {
     expect(component.listaDeDados).toEqual(undefined);
     expect(component.showError).toBeTrue();
     expect(div).toEqual('Erro ao carregar Lista!!');
+  });
+
+
+  it('Deve adicionar dados', () => {
+    // Inicia a variavel dados com o valor do mock de dados.
+    component.dados = dadosMock;
+
+    //Verifica as alterações.
+    fixture.detectChanges();
+
+    //Observable que vai ser retornado pelo metodo retornaListaDeDados.
+    const ObservableReturn = new Observable<Dados>(observable => {
+      observable.next(dadosMock);
+    });
+
+    // Spyon do console.log.
+    spyOn(window.console, 'log');
+
+    // SpyOn serve para mockar o retorno de um método.
+    spyOn(testService, 'adicionarDados').and.returnValue(ObservableReturn);
+
+    // Chama o metodo que vai executar a ação.
+    component.adicionarDados();
+
+    // Faz as verificações.
+    expect(window.console.log).toHaveBeenCalledOnceWith(`${dadosMock.texto} adicionado com sucesso!`);
+  });
+
+
+  it('Não deve adicionar dados se conter espaços', () => {
+
+    // Spyon do console.log.
+    spyOn(window.console, 'log');
+
+    // SpyOn serve para mockar o retorno de um método.
+    spyOn(testService, 'adicionarDados').and.returnValue(throwError(400));
+
+    // Chama o metodo que vai executar a ação.
+    component.adicionarDados();
+
+    // Faz as verificações.
+    expect(window.console.log).toHaveBeenCalledOnceWith("Erro ao adicionar !");
   });
 
   it('Deve mudar o valor da variável show para false', () => {

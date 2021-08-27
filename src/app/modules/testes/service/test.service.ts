@@ -15,4 +15,8 @@ export class TestService {
   public retornaListaDeDados(): Observable<Dados[]> {
     return this.httpClient.get('http://localhost:9000/dados') as Observable<Dados[]>;
   }
+
+  public adicionarDados(dados: Dados): Observable<Dados> {
+    return this.httpClient.post('http://localhost:9000/dados', dados) as Observable<Dados>;
+  }
 }
