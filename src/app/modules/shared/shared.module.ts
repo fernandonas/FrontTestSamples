@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { NzTableModule } from 'ng-zorro-antd/table';
 
 
-
 @NgModule({
   declarations: [
     NavbarComponent,
