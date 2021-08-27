@@ -2,9 +2,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Observable, throwError } from 'rxjs';
-import { Dados } from './models/dados.model';
-import { dadosMock } from './models/mocks/_dados.mock';
-import { TestService } from './service/test.service';
+import { Dados } from '../../models/dados.model';
+import { dadosMock } from '../../models/mocks/_dados.mock';
+import { TestService } from '../../service/test.service';
 import { TestesComponent } from './testes.component';
 
 // Testes devem ser feito dentro de um describe.

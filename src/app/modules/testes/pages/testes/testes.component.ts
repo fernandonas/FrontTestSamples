@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Dados } from './models/dados.model';
-import { TestService } from './service/test.service';
+import { Dados } from '../../models/dados.model';
+import { TestService } from '../../service/test.service';
 
 @Component({
   selector: 'app-testes',
