@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Dados } from '../../models/dados.model';
 import { TestService } from '../../service/test.service';
@@ -9,7 +9,7 @@ import { TestService } from '../../service/test.service';
   styleUrls: ['./testes.component.less']
 })
 
-export class TestesComponent implements OnInit {
+export class TestesComponent implements OnInit, OnDestroy {
   @Input() show: boolean;
   showError: boolean;
   public subscription = new Subscription();
@@ -31,7 +31,7 @@ export class TestesComponent implements OnInit {
         this.listaDeDados = response;
         this.showError = false;
       },
-      error: () => {
+      error: (re) => {
         this.showError = true;
       }
     }));
@@ -57,5 +57,9 @@ export class TestesComponent implements OnInit {
 
   public buttonText(): string{
     return this.show ? 'OCULTAR LISTA' : 'EXIBIR LISTA';
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
