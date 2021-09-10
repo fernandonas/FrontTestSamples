@@ -5,10 +5,11 @@ import { TestesRoutingModule } from './testes-routing.module';
 import { FormsModule } from '@angular/forms';
 import { TestesComponent } from './pages/testes/testes.component';
 import { RouterModule } from '@angular/router';
+import { ButtonComponent } from './components/button/button.component';
 
 
 @NgModule({
-  declarations: [TestesComponent],
+  declarations: [TestesComponent, ButtonComponent],
   imports: [
     RouterModule,
     CommonModule,

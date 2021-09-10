@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { ButtonComponent } from '../../components/button/button.component';
 import { Dados } from '../../models/dados.model';
 import { dadosMock } from '../../models/mocks/_dados.mock';
 import { TestService } from '../../service/test.service';
@@ -33,7 +34,7 @@ describe('TestesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestesComponent],
+      declarations: [TestesComponent, ButtonComponent],
       imports: [
         HttpClientTestingModule,
         FormsModule
