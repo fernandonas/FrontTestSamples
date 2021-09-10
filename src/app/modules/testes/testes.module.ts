@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { TestesRoutingModule } from './testes-routing.module';
 import { FormsModule } from '@angular/forms';
 import { TestesComponent } from './pages/testes/testes.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [TestesComponent],
   imports: [
+    RouterModule,
     CommonModule,
     TestesRoutingModule,
     FormsModule

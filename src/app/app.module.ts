@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NZ_I18N, pt_BR } from 'ng-zorro-antd/i18n';
-import { SharedModule } from './modules/shared/shared.module';
 
 registerLocaleData(pt);
 
@@ -22,8 +21,7 @@ registerLocaleData(pt);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    SharedModule
+    BrowserAnimationsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: pt_BR }],
   bootstrap: [AppComponent]
